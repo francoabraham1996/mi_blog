@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}
+Iniciar sesión
+{% endblock %}
+
+{% block contenido %}
+
+    <h1>
+        Iniciar sesión
+    </h1>
+
+    <hr>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ formulario.as_p }}
+
+        <button type="submit"
+                class="btn btn-primary">
+
+            Iniciar sesión
+
+        </button>
+
+        <a href="{% url 'inicio' %}"
+           class="btn btn-secondary">
+
+            Volver
+
+        </a>
+
+    </form>
+
+{% endblock %}

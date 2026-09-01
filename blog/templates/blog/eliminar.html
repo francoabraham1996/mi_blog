@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+Eliminar artículo
+{% endblock %}
+
+
+{% block contenido %}
+
+    <h1 class="text-danger">
+        Eliminar artículo
+    </h1>
+
+    <hr>
+
+
+    <div class="alert alert-danger">
+
+        <h4>
+            ¿Estás seguro de que querés eliminar este artículo?
+        </h4>
+
+        <p>
+            <strong>
+                {{ articulo.titulo }}
+            </strong>
+        </p>
+
+        <p>
+            Esta acción no se puede deshacer.
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <button type="submit"
+                class="btn btn-danger">
+
+            Sí, eliminar
+
+        </button>
+
+
+        <a href="{% url 'detalle' articulo.pk %}"
+           class="btn btn-secondary">
+
+            Cancelar
+
+        </a>
+
+    </form>
+
+{% endblock %}

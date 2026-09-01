@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+Contacto
+{% endblock %}
+
+
+{% block contenido %}
+
+    <h1>
+        Contacto
+    </h1>
+
+    <hr>
+
+
+    <p class="text-muted">
+        Completá el formulario para enviarnos un mensaje.
+    </p>
+
+
+    {% if enviado %}
+
+        <div class="alert alert-success">
+
+            Mensaje enviado correctamente.
+
+        </div>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+        <button type="submit"
+                class="btn btn-primary">
+
+            Enviar mensaje
+
+        </button>
+
+
+        <a href="{% url 'inicio' %}"
+           class="btn btn-secondary">
+
+            Volver
+
+        </a>
+
+    </form>
+
+{% endblock %}

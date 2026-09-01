@@ -1,0 +1,84 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+{{ articulo.titulo }}
+{% endblock %}
+
+
+{% block contenido %}
+
+    <!-- ========================================= -->
+    <!-- DETALLE DEL ARTÍCULO -->
+    <!-- ========================================= -->
+
+    <h1>
+        {{ articulo.titulo }}
+    </h1>
+
+
+    <!-- Autor -->
+    <p class="text-muted">
+        Autor: {{ articulo.autor }}
+    </p>
+
+
+    <!-- Fecha -->
+    <p class="text-muted">
+        Publicado: {{ articulo.creado }}
+    </p>
+
+
+    <hr>
+
+
+    <!-- Contenido completo -->
+    <p>
+        {{ articulo.contenido }}
+    </p>
+
+
+    <hr>
+
+
+    <!-- ========================================= -->
+    <!-- EDITAR Y ELIMINAR -->
+    <!-- ========================================= -->
+
+    <!--
+    Solamente mostramos estos botones
+    si el usuario logueado es el autor.
+    -->
+
+    {% if user == articulo.autor %}
+
+        <!-- Editar -->
+        <a href="{% url 'editar' articulo.pk %}"
+           class="btn btn-warning">
+
+            Editar
+
+        </a>
+
+
+        <!-- Eliminar -->
+        <a href="{% url 'eliminar' articulo.pk %}"
+           class="btn btn-danger">
+
+            Eliminar
+
+        </a>
+
+    {% endif %}
+
+
+    <!-- Volver -->
+    <a href="{% url 'inicio' %}"
+       class="btn btn-secondary">
+
+        Volver
+
+    </a>
+
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+Mi Blog
+{% endblock %}
+
+
+{% block contenido %}
+
+    <h1>
+        Últimos artículos
+    </h1>
+
+    <hr>
+
+
+    <!-- ========================================= -->
+    <!-- BUSCADOR -->
+    <!-- ========================================= -->
+
+    <form method="GET"
+          action="{% url 'inicio' %}"
+          class="mb-4">
+
+        <div class="input-group">
+
+            <input type="text"
+                   name="q"
+                   class="form-control"
+                   placeholder="Buscar artículo por título..."
+                   value="{{ busqueda }}">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Buscar
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+    {% if busqueda %}
+
+        <div class="alert alert-light border">
+
+            Resultados para:
+
+            <strong>
+                "{{ busqueda }}"
+            </strong>
+
+            <a href="{% url 'inicio' %}"
+               class="btn btn-sm btn-outline-secondary ms-2">
+
+                Ver todos
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ========================================= -->
+    <!-- ARTÍCULOS -->
+    <!-- ========================================= -->
+
+    {% for articulo in articulos %}
+
+        <div class="card mb-3">
+
+            <div class="card-body">
+
+                <h2 class="card-title">
+                    {{ articulo.titulo }}
+                </h2>
+
+                <p class="text-muted">
+                    Autor: {{ articulo.autor }}
+                </p>
+
+                <p class="text-muted">
+                    Publicado: {{ articulo.creado }}
+                </p>
+
+                <p class="card-text">
+                    {{ articulo.contenido|truncatewords:30 }}
+                </p>
+
+                <a href="{% url 'detalle' articulo.pk %}"
+                   class="btn btn-outline-primary">
+
+                    Leer más
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    {% empty %}
+
+        {% if busqueda %}
+
+            <div class="alert alert-warning">
+
+                No se encontraron artículos con el título
+
+                <strong>
+                    "{{ busqueda }}"
+                </strong>.
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+
+                Todavía no hay artículos publicados.
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}

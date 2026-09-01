@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+Acerca de mí
+{% endblock %}
+
+
+{% block contenido %}
+
+    <h1>
+        Acerca de mí
+    </h1>
+
+    <hr>
+
+
+    <p>
+        Hola, soy Franco.
+    </p>
+
+    <p>
+        Este blog fue desarrollado como proyecto
+        utilizando Python y Django.
+    </p>
+
+    <p>
+        El objetivo del sitio es permitir que los usuarios
+        puedan registrarse, iniciar sesión, crear artículos,
+        leer publicaciones y administrar su propio contenido.
+    </p>
+
+
+    <a href="{% url 'inicio' %}"
+       class="btn btn-secondary">
+
+        Volver
+
+    </a>
+
+{% endblock %}

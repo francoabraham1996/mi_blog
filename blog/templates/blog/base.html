@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+
+    <!-- ========================================= -->
+    <!-- TÍTULO DE CADA PÁGINA -->
+    <!-- ========================================= -->
+
+    <title>
+
+        {% block titulo %}
+
+            Mi Blog
+
+        {% endblock %}
+
+    </title>
+
+
+    <!-- ========================================= -->
+    <!-- BOOTSTRAP -->
+    <!-- ========================================= -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- ========================================= -->
+    <!-- NUESTRO ARCHIVO CSS -->
+    <!-- ========================================= -->
+
+    <link rel="stylesheet"
+          href="{% static 'blog/estilos.css' %}">
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================= -->
+    <!-- NAVBAR GENERAL DEL SITIO -->
+    <!-- ========================================= -->
+
+    <nav class="navbar navbar-dark bg-dark">
+
+        <div class="container">
+
+
+            <!-- INICIO -->
+
+            <a class="navbar-brand"
+               href="{% url 'inicio' %}">
+
+                Mi Blog
+
+            </a>
+
+
+            <!-- ACERCA DE MÍ -->
+
+            <a class="btn btn-outline-light me-2"
+               href="{% url 'acerca_de' %}">
+
+                Acerca de mí
+
+            </a>
+
+
+            <!-- CONTACTO -->
+
+            <a class="btn btn-outline-light me-2"
+               href="{% url 'contacto' %}">
+
+                Contacto
+
+            </a>
+
+
+            <div>
+
+                <!-- ========================================= -->
+                <!-- SI EL USUARIO INICIÓ SESIÓN -->
+                <!-- ========================================= -->
+
+                {% if user.is_authenticated %}
+
+
+                    <!-- MOSTRAMOS EL NOMBRE DEL USUARIO -->
+
+                    <span class="text-white me-3">
+
+                        Hola, {{ user.username }}
+
+                    </span>
+
+
+                    <!-- MI PERFIL -->
+
+                    <a class="btn btn-info me-2"
+                       href="{% url 'mi_perfil' %}">
+
+                        Mi perfil
+
+                    </a>
+
+
+                    <!-- CREAR ARTÍCULO -->
+
+                    <a class="btn btn-primary me-2"
+                       href="{% url 'crear' %}">
+
+                        Crear artículo
+
+                    </a>
+
+
+                    <!-- CERRAR SESIÓN -->
+
+                    <a class="btn btn-danger"
+                       href="{% url 'cerrar_sesion' %}">
+
+                        Cerrar sesión
+
+                    </a>
+
+
+                <!-- ========================================= -->
+                <!-- SI EL USUARIO NO INICIÓ SESIÓN -->
+                <!-- ========================================= -->
+
+                {% else %}
+
+
+                    <!-- INICIAR SESIÓN -->
+
+                    <a class="btn btn-outline-light me-2"
+                       href="{% url 'iniciar_sesion' %}">
+
+                        Iniciar sesión
+
+                    </a>
+
+
+                    <!-- REGISTRARSE -->
+
+                    <a class="btn btn-success"
+                       href="{% url 'registrarse' %}">
+
+                        Registrarse
+
+                    </a>
+
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ========================================= -->
+    <!-- CONTENIDO DE CADA PÁGINA -->
+    <!-- ========================================= -->
+
+    <div class="container mt-5">
+
+        {% block contenido %}
+
+        {% endblock %}
+
+    </div>
+
+
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT DE BOOTSTRAP -->
+    <!-- ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+</body>
+
+</html>

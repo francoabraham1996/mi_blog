@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+
+
+{% block titulo %}
+Mi perfil
+{% endblock %}
+
+
+{% block contenido %}
+
+    <h1>
+        Mi perfil
+    </h1>
+
+    <hr>
+
+
+    <p>
+        <strong>Usuario:</strong>
+        {{ user.username }}
+    </p>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+        <button type="submit"
+                class="btn btn-primary">
+
+            Guardar cambios
+
+        </button>
+
+
+        <a href="{% url 'inicio' %}"
+           class="btn btn-secondary">
+
+            Volver
+
+        </a>
+
+    </form>
+
+{% endblock %}
