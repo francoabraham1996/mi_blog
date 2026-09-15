@@ -178,7 +178,7 @@ def registrarse(request):
             # 2. BUSCAMOS EL GRUPO "AUTORES"
             # ==========================================
 
-            grupo_autores = Group.objects.get(
+            grupo_autores, creado = Group.objects.get_or_create(
                 name='Autores'
             )
 
