@@ -171,7 +171,7 @@ El proyecto se encuentra preparado para realizar un deployment de Django.
 
 Antes de una publicación definitiva se deben configurar los hosts permitidos, las variables de entorno y las opciones de seguridad correspondientes al servicio de hosting utilizado.
 
-**URL pública:** pendiente de configuración.
+**URL pública:** https://mi-blog-4zc0.onrender.com
 
 ## Repositorio
 
